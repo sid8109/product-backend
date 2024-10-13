@@ -30,17 +30,18 @@ const validateProductCreation = (req: Request, res: Response, next: NextFunction
 };
 
 const validateProductUpdate = (req: Request, res: Response, next: NextFunction): void => {
-    let { name, price, category } = req.body;
+    let { name, price, category, description } = req.body;
 
-    if (!name && !price && !category) {
-        res.status(422).json({ error: 'At least one field (name, price, or category) is required for updating.' });
+    if (!name && !price && !category && !description) {
+        res.status(422).json({ error: 'At least one field (name, price, description or category) is required for updating.' });
         return
     }
 
     if (name) req.body.name = removeSpaces(name);
     if (category) req.body.category = removeSpaces(category);
+    if (description) req.body.description = removeSpaces(description);
 
-    if (price && (typeof price !== 'number' || price <= 0)) {
+    if (price && (isNaN(price) || parseFloat(price) <= 0)) {
         res.status(422).json({ error: 'Valid product price is required (a positive number).' });
         return
     }
