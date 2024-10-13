@@ -104,4 +104,7 @@ This project is a simple RESTful API for managing a list of products. The API al
     Run Sequelize migrations to create the required tables:
 
     ```bash
-    npx sequelize-cli db:migrate 
+    npx sequelize-cli db:migrate
+    ```
+
+    API Documentation: https://documenter.getpostman.com/view/32435063/2sAXxS8rrj
